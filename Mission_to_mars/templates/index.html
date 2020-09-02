@@ -1,5 +1,7 @@
 <!-- create html template to take mars data dict and display data in app html element-->
 <!-- use final app images as template  -->
+<!-- mars.variable to pull in, create own page elements -->
+<!-- create css. do I need JS three lines? -->
 
 <!DOCTYPE html>
 <html lang="en-us">
@@ -7,22 +9,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mission To Mars</title>
+    <title>Mission To Mars Project</title>
     <link rel="stylesheet" 
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container-fluid">
         <div class="jumbotron text-center">
-            <h1>Test</h1>
-            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
-            <p>Description</p>
-
+            <h1>Mission To Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Mars Data!</a></p>
+            <p>Learn more about what's going on, on Mars!</p>
         </div>
-
     </div>
-
-
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Latest Mars News</h2>
+        </div>
+    </div>
+    <br></br>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{mars.news}}</h3>
+            <h3>{{mars.para}}</h3>
+        </div>
+    </div>
+    <br></br>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Featured Mars Image</h2>
+            <br></br>
+            <img src="{{mars.featured_image}}" width=400 alt="Featured Mars Image On NASA.gov">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Current Weather On Mars</h2>
+            {{mars.mars_weather}}
+        </div>
+    </div>
+    <br></br>
+    <div>
+        <h2>Mars Facts</h2>
+        {{mars.html_data_table}}
+    </div>
+    <br></br>
+    <div>
+        <h2>Mars Hemispheres</h2>
+    </div>
+    <div>
+        {mars.image_list}
+    </div>
+        
 
 
 </body>
