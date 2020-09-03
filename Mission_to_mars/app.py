@@ -34,8 +34,8 @@ def scrape():
     #  mars_hemispheres = scrape_mars.mars_hem()
     mars_dict.update({}, mars_all, upsert=True)
 
-    return redirect("/", code=302)
-
+    return redirect("/")
+# , code=302
 
 # app run
 if __name__ == "__main__":

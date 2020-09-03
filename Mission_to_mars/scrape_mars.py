@@ -13,8 +13,8 @@ import time
 
 # chromedriver/splinter connection
 def init_browser():
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    return Browser('chrome', **executable_path, headless=False)
+    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    return Browser("chrome", **executable_path, headless=False)
 
 
 # NASA Mars News (title/para scraping)
@@ -28,14 +28,17 @@ def scrape():
     url_one = 'https://mars.nasa.gov/news/'
     browser.visit(url_one)
 
-    time.sleep(2)
+    time.sleep(8)
 
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     # collect and extract latest news title and paragraph text
     article = soup.find("div", class_='list_text')
-    news = article.find('div', class_='content_title').text
-    para = article.find('div', class_='article_teaser_body').text
+    news = article.find("div", class_='content_title').text
+    para = article.find("div", class_='article_teaser_body').text
+
+    news_title = news
+    paragraph = para
 
     # URL connect featured image
     url_two = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -67,6 +70,9 @@ def scrape():
     twitter_html = soup_twitter.body
     mars_w = twitter_html.find('div', class_='css-901oao r-hkyrab r-1qd0xha r-a023e6 r-16dba41 r-ad9z0x r-bcqeeo r-bnwqim r-qvutc0')
     mars_weather = mars_w.find('span', class_='css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0').text
+
+    # dict entry for twitter
+    m_weather = mars_weather
 
 # Mars Facts (table) url connect
     url_four = 'https://space-facts.com/mars/'
@@ -112,10 +118,10 @@ def scrape():
         
     # global dict
     mars_dict = {
-        'news_title': news,
-        'news_paragraph': para,
+        'news_title':  news_title,
+        'news_paragraph': paragraph,
         "featured_image": featured_image,
-        "tweet": mars_weather,
+        "tweet":  m_weather,
         "table": html_data_table,
         "hemispheres": image_list
 
