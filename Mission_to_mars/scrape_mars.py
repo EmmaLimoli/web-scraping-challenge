@@ -33,9 +33,9 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     # collect and extract latest news title and paragraph text
-    # article = soup.find("div", class_='list_text')
-    news = soup.find_all('div', class_='content_title')[0].text
-    para = soup.find('div', class_='article_teaser_body')
+    article = soup.find("div", class_='list_text')
+    news = article.find('div', class_='content_title').text
+    para = article.find('div', class_='article_teaser_body').text
 
     # URL connect featured image
     url_two = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -58,6 +58,8 @@ def scrape():
     # Mars weather (twitter) url connect
     url_three = 'https://twitter.com/marswxreport?lang=en'
     browser.visit(url_three)
+
+    time.sleep(2)
 
     html = browser.html
     soup_twitter = BeautifulSoup(html, 'html.parser')
@@ -105,8 +107,8 @@ def scrape():
         url_img_find = main_link + soup_hemispheres.find('img', class_='wide-image')['src']
         image_list.append({"Title of image": h3, "The image URL": url_img_find})
 
-    pp = pprint.PrettyPrinter(indent=2)
-    pp.pprint(image_list)
+    # pp = pprint.PrettyPrinter(indent=2)
+    # pp.pprint(image_list)
         
     # global dict
     mars_dict = {

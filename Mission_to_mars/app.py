@@ -18,23 +18,23 @@ mongo = PyMongo(app)
 # create a route for homepage
 @app.route("/")
 def home():
-    mars_dict = mongo.db. mars_dict.find_one()
+    mars_dict = mongo.db.mars_dict.find_one()
 
-    return render_template("index.html",  mars=mars_dict)
+    return render_template("index.html",  mars_dict=mars_dict)
 
 # create a route for scrape
 @app.route("/scrape")
 def scrape():
 
-     mars_dict = mongo.db.mars_dict
-     mars_all = scrape_mars.scrape()
+    mars_dict = mongo.db.mars_dict
+    mars_all = scrape_mars.scrape()
     #  mars_image = scrape_mars.ft_img()
     #  mars_twitter = scrape_mars.twitter()
     #  mars_table = scrape_mars.mars_facts()
     #  mars_hemispheres = scrape_mars.mars_hem()
-     mars_dict.update({}, mars_all, upsert=True)
+    mars_dict.update({}, mars_all, upsert=True)
 
-     return redirect("/", code=302)
+    return redirect("/", code=302)
 
 
 # app run
