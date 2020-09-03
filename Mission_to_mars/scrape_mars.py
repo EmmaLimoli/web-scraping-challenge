@@ -9,6 +9,7 @@ import requests
 from splinter import Browser
 import pymongo 
 import pprint
+import time
 
 # chromedriver/splinter connection
 def init_browser():
@@ -26,6 +27,9 @@ def scrape():
     # URL connect
     url_one = 'https://mars.nasa.gov/news/'
     browser.visit(url_one)
+
+    time.sleep(2)
+
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     # collect and extract latest news title and paragraph text
@@ -37,6 +41,9 @@ def scrape():
     url_two = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(url_two)
     html = browser.html
+
+    time.sleep(2)
+
     soup_image = BeautifulSoup(html, 'html.parser')
     # collect and extract image
     image_html = soup_image.body
@@ -51,6 +58,7 @@ def scrape():
     # Mars weather (twitter) url connect
     url_three = 'https://twitter.com/marswxreport?lang=en'
     browser.visit(url_three)
+
     html = browser.html
     soup_twitter = BeautifulSoup(html, 'html.parser')
     # collect and extract latest tweet
@@ -62,6 +70,8 @@ def scrape():
     url_four = 'https://space-facts.com/mars/'
     tables = pd.read_html(url_four)
 
+    time.sleep(2)
+
     # collect and extract table
     data_tables = tables[0]
     data_tables.columns = [0,1]
@@ -72,6 +82,9 @@ def scrape():
 # Mars Hemispheres (loop) url connect
     url_five = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url_five)
+
+    time.sleep(2)
+
     html_five = browser.html
     soup_hem = BeautifulSoup(html_five, 'html.parser')
     
