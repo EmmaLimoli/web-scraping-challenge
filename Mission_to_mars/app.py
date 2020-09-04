@@ -17,7 +17,7 @@ mongo = PyMongo(app)
 
 # create a route for homepage
 @app.route("/")
-def home():
+def index():
     mars_dict = mongo.db.mars_dict.find_one()
 
     return render_template("index.html",  mars_dict=mars_dict)
@@ -33,9 +33,7 @@ def scrape():
     #  mars_table = scrape_mars.mars_facts()
     #  mars_hemispheres = scrape_mars.mars_hem()
     mars_dict.update({}, mars_all, upsert=True)
-
-    return redirect("/")
-# , code=302
+    return redirect("/", code=302)
 
 # app run
 if __name__ == "__main__":

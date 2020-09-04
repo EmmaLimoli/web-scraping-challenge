@@ -13,9 +13,9 @@
     <!-- <link rel = "stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <!-- delete? -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </head>
 <body style = "background-color: lightskyblue">
     <div class="container-fluid">
@@ -27,43 +27,57 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            <div class="text-center">
             <h2>Latest Mars News</h2>
+            </div>
         </div>
-    </div>
+    </div>  
     <br></br>
     <div class="row">
         <div class="col-md-12">
-            <h3>{{ mars_dict. news_title }}</h3>
+            <h3>{{ mars_dict.news_title }}</h3>
             <p>{{ mars_dict.paragraph }}</p>
         </div>
     </div>
     <br></br>
     <div class="row">
         <div class="col-md-12">
+            <div class="text-center">
             <h2>Featured Mars Image</h2>
+            
             <br></br>
             <img src="{{mars_dict.featured_image}}" width=400 alt="Featured Mars Image On NASA.gov">
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
+            <div class="text-center">
             <h2>Current Weather On Mars</h2>
-            {{mars_dict.m_weather}}
+            </div>
+            {{ mars_dict.mars_weather }}
         </div>
     </div>
     <br></br>
-    <div>
+    <div class="text-center">
         <h2>Mars Facts</h2>
-        {{mars_dict.html_data_table}}
+        {{ mars_dict.html_table | safe }}
     </div>
     <br></br>
-    <div>
+    <div class="text-center">
         <h2>Mars Hemispheres</h2>
     </div>
-    <div>
-        <img src="{{mars_dict.image_list}}" width=500 alt="Featured Mars Images">
-        {{mars_dict.image_list}}
-    </div>  
+    {% for hemisphere in mars_dict.final_image_list %}
+    <div class="col-6 border">
+    <br></br>
+        <div>
+            <img src="{{hemisphere.url_img_find}}" width=500 alt="Featured Mars Images">
+        </div> 
+        <div>
+            <h3>{{ hemisphere.h3}}</h4>
+        </div> 
+    </div>
+    {% endfor %}
 
 
 </body>
