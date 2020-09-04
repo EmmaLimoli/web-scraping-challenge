@@ -40,7 +40,7 @@ def scrape():
 
     # variables for dict (scrape 1)
     news_title = news
-    paragraph = para
+    news_paragraph = para
 
     # URL connect featured image
     url_two = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -131,11 +131,11 @@ def scrape():
     # global dict
     mars_dict = {
         "news_title": news_title,
-        "news_paragraph": paragraph,
+        "news_paragraph": news_paragraph,
         "featured_image": featured_image,
-        "tweet": mars_weather,
-        "table": html_table,
-        "hemispheres": final_image_list
+        "mars_weather": mars_weather,
+        "html_table": html_table,
+        "final_image_list": final_image_list
 
     }
 
