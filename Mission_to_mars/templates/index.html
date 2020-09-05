@@ -1,7 +1,8 @@
 <!-- create html template to take mars data dict and display data in app html element-->
 <!-- use final app images as template  -->
 <!-- mars.variable to pull in, create own page elements -->
-<!-- create css. do I need JS three -->
+<!-- create css? do I need JS three? -->
+<!-- move table and  current weather to be sidebyside-->
 
 <!DOCTYPE html>
 <html lang="en-us">
@@ -10,12 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mission To Mars Project</title>
-    <!-- <link rel = "stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <!-- delete? -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
 </head>
 <body style = "background-color: lightskyblue">
     <div class="container-fluid">
@@ -25,61 +22,50 @@
             <p>Learn more about what's going on, on Mars!</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
+    <div class= "container">
+        <div class="row row-cols-2">
             <div class="text-center">
-            <h2>Latest Mars News</h2>
-            </div>
-        </div>
-    </div>  
-    <br></br>
-    <div class="row">
-        <div class="col-md-12">
-            <h3>{{ mars_dict.news_title }}</h3>
-            <p>{{ mars_dict.news_paragraph }}</p>
-        </div>
-    </div>
-    <br></br>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="text-center">
-            <h2>Featured Mars Image</h2>
-            
-            <br></br>
-            <img src="{{mars_dict.featured_image}}" width=400 alt="Featured Mars Image On NASA.gov">
+                <h2>Latest Mars News</h2>
+                <h3>{{ mars_dict.news_title }}</h3>
+                <p>{{ mars_dict.news_paragraph }}</p>
+                <br></br>
+                <h2>Featured Mars Image</h2>
+                <br></br>
+                <img src="{{mars_dict.featured_image}}" width=600 alt="Featured Mars Image On NASA.gov">
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="text-center">
-            <h2>Current Weather On Mars</h2>
+    <div class= "container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h2>Current Weather On Mars</h2>
+                    {{ mars_dict.mars_weather }}
+                    <br></br>
+                    <h2>Mars Facts</h2>
+                    {{ mars_dict.html_table | safe }}
+                </div>
             </div>
-            {{ mars_dict.mars_weather }}
         </div>
-    </div>
-    <br></br>
-    <div class="text-center">
-        <h2>Mars Facts</h2>
-        {{ mars_dict.html_table | safe }}
     </div>
     <br></br>
     <div class="text-center">
         <h2>Mars Hemispheres</h2>
     </div>
-    {% for hemisphere in mars_dict.final_image_list %}
-    <div class="col-6 border">
-    <br></br>
-        <div>
-            <img src="{{hemisphere.url_img_find}}" width=500 alt="Featured Mars Images">
-        </div> 
-        <div>
-            <h3>{{ hemisphere.h3}}</h4>
-        </div> 
+    <div class= "container container-visual">
+        <div class="row">
+            {% for hemisphere in mars_dict.final_image_list %}
+            <div class="col-md-6">
+                <br></br>
+                    <img src="{{hemisphere.url_img_find | safe}}" width=500 alt="Featured Mars Images">
+                <div>
+                    <h3>{{ hemisphere.h3 | safe}}</h3>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-
-
+    
 </body>
 
 </html>

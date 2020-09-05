@@ -29,7 +29,7 @@ def scrape():
     browser.visit(url_one)
 
     # timer to stop site from overloading
-    time.sleep(15)
+    time.sleep(10)
 
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
@@ -66,7 +66,7 @@ def scrape():
     browser.visit(url_three)
 
     # timer to stop site from overloading
-    time.sleep(8)
+    time.sleep(5)
 
     html = browser.html
     soup_twitter = BeautifulSoup(html, 'html.parser')
@@ -83,12 +83,12 @@ def scrape():
     tables = pd.read_html(url_four)
 
      # timer to stop site from overloading
-    time.sleep(8)
+    time.sleep(5)
 
     # collect and extract table
     data_tables = tables[0]
-    data_tables.columns = [0,1]
-    data_tables.set_index(0, inplace=True)
+    data_tables.columns = ["Categories", "Values"]
+    data_tables.set_index("Categories", inplace=True)
     html_data_table = data_tables.to_html()
     html_data_table.replace('\n','')
 
@@ -100,7 +100,7 @@ def scrape():
     browser.visit(url_five)
 
     # timer to stop site from overloading
-    time.sleep(8)
+    time.sleep(5)
 
     html_five = browser.html
     soup_hem = BeautifulSoup(html_five, 'html.parser')
@@ -108,6 +108,7 @@ def scrape():
     # collect and extract table
     hemisphere = soup_hem.find_all('div', class_='item')
 
+    # image list for all
     image_list = []
 
     main_link = 'https://astrogeology.usgs.gov/'
@@ -116,14 +117,21 @@ def scrape():
 
         img_url = x.find('a', class_='itemLink product-item')['href']
         h3 = x.find('h3').text
+
         browser.visit(main_link + img_url)
+
         time.sleep(8)
         img_brow = browser.html
         soup_hemispheres = BeautifulSoup(img_brow, 'html.parser')
-        url_img_find = main_link + soup_hemispheres.find('img', class_='wide-image')['src']
-        image_list.append({"Title of image": h3, "The image URL": url_img_find})
 
-    print(image_list)
+        url_img_find = main_link + soup_hemispheres.find('img', class_='wide-image')['src']
+        # image_list.append({"Title of image": h3, "The image URL": url_img_find})
+
+        # create dict to pull in separate images, use image_list.append and dict
+        image_dict = {}
+        image_dict["h3"] = h3
+        image_dict["url_img_find"] = url_img_find
+        image_list.append(image_dict)
 
     # variable for dict
     final_image_list = image_list
