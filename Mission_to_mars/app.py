@@ -28,10 +28,6 @@ def scrape():
 
     mars_dict = mongo.db.mars_dict
     mars_all = scrape_mars.scrape()
-    #  mars_image = scrape_mars.ft_img()
-    #  mars_twitter = scrape_mars.twitter()
-    #  mars_table = scrape_mars.mars_facts()
-    #  mars_hemispheres = scrape_mars.mars_hem()
     mars_dict.update({}, mars_all, upsert=True)
     return redirect("/", code=302)
 

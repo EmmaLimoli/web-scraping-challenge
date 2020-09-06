@@ -113,17 +113,20 @@ def scrape():
 
     main_link = 'https://astrogeology.usgs.gov/'
 
+    # create for loop
     for x in hemisphere:
 
         img_url = x.find('a', class_='itemLink product-item')['href']
+        # use h3 in dict
         h3 = x.find('h3').text
 
         browser.visit(main_link + img_url)
-
+        # time sleep
         time.sleep(8)
         img_brow = browser.html
         soup_hemispheres = BeautifulSoup(img_brow, 'html.parser')
 
+        # use url_img_find in dict
         url_img_find = main_link + soup_hemispheres.find('img', class_='wide-image')['src']
         # image_list.append({"Title of image": h3, "The image URL": url_img_find})
 
@@ -147,6 +150,7 @@ def scrape():
 
     }
 
+    # quit browser
     browser.quit()
     
     return mars_dict

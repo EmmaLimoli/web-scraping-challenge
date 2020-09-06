@@ -11,30 +11,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mission To Mars Project</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
+<!-- button creation -->
 <body style = "background-color: lightskyblue">
     <div class="container-fluid">
         <div class="jumbotron text-center">
             <h1>Mission To Mars</h1>
             <p><a class="btn btn-primary btn-lg" href="../scrape" role="button">Get Mars Data!</a></p>
-            <p>Learn more about what's going on, on Mars!</p>
+            <p style="font-size: 30px">Learn more about what's going on, on Mars!</p>
         </div>
     </div>
+    <!-- start scrapping -->
     <div class= "container">
         <div class="row row-cols-2">
             <div class="text-center">
-                <h2>Latest Mars News</h2>
+                <!-- scrape 1 -->
+                <h2>Latest News On Mars</h2>
+                <br></br>
                 <h3>{{ mars_dict.news_title }}</h3>
                 <p>{{ mars_dict.news_paragraph }}</p>
                 <br></br>
-                <h2>Featured Mars Image</h2>
+                <!-- scrape 2 -->
+                <h2>Featured Image Of Mars</h2>
                 <br></br>
                 <img src="{{mars_dict.featured_image}}" width=600 alt="Featured Mars Image On NASA.gov">
             </div>
         </div>
     </div>
+    <br></br>
+    <!-- scrape 3 -->
     <div class= "container">
         <div class="row">
             <div class="col-md-12">
@@ -42,15 +52,17 @@
                     <h2>Current Weather On Mars</h2>
                     {{ mars_dict.mars_weather }}
                     <br></br>
-                    <h2>Mars Facts</h2>
-                    {{ mars_dict.html_table | safe }}
+                    <!-- scrape 4 -->
+                    <h2>Facts About Mars</h2>
+                    <p style="display: float right">{{ mars_dict.html_table | safe }}</p>
                 </div>
             </div>
         </div>
     </div>
     <br></br>
+    <!-- scrape 5, use jinja -->
     <div class="text-center">
-        <h2>Mars Hemispheres</h2>
+        <h2>The Mars Hemispheres</h2>
     </div>
     <div class= "container container-visual">
         <div class="row">
